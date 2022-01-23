@@ -1,5 +1,6 @@
 import React from 'react';
 import { openReverseGeocoder } from '@geolonia/open-reverse-geocoder'
+import { Buffer } from 'buffer';
 
 import './App.scss';
 
@@ -8,9 +9,7 @@ import Weather from './Weather';
 
 import mapStyle from './style.json'
 
-// Fixes the problem `Buffer is not defined.` on open-reverse-geocoder with typescript.
-// @ts-ignore
-window.Buffer = window.Buffer || require('buffer').Buffer;
+global.Buffer = Buffer;
 
 declare global {
   interface Window {
