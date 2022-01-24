@@ -39,6 +39,7 @@ unclutter -idle 0 &
 cd ~/app
 git pull
 npm install
+npm run build:style && npm run build
 npm run serve > /dev/null 2>&1 &
 
 chromium-browser --noerrdialogs --disable-infobars --gpu --gpu-launcher --in-process-gpu --ignore-gpu-blacklist --ignore-gpu-blocklist --kiosk http://localhost:3000
