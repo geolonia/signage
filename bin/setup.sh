@@ -41,5 +41,5 @@ git pull
 npm install
 npm run serve > /dev/null 2>&1 &
 
-chromium-browser --noerrdialogs --disable-infobars --gpu --gpu-launcher --in-process-gpu --ignore-gpu-blacklist --ignore-gpu-blocklist --kiosk https://localhost:3000
+chromium-browser --noerrdialogs --disable-infobars --gpu --gpu-launcher --in-process-gpu --ignore-gpu-blacklist --ignore-gpu-blocklist --kiosk http://localhost:3000
 EOS
