@@ -27,7 +27,7 @@
     "build:style": "charites build style/style.yml src/style.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "serve": "npm run build && serve -s build"
+    "serve": "npm run build:style && npm run build && serve -s build"
   },
   "eslintConfig": {
     "extends": [
