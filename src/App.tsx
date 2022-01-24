@@ -1,6 +1,6 @@
 import React from 'react';
 import { openReverseGeocoder } from '@geolonia/open-reverse-geocoder'
-import { Buffer } from 'buffer';
+import { Buffer } from 'buffer'
 
 import './App.scss';
 
@@ -9,13 +9,13 @@ import Weather from './Weather';
 
 import mapStyle from './style.json'
 
-global.Buffer = Buffer;
-
 declare global {
   interface Window {
     geolonia: any;
   }
 }
+
+global.Buffer = Buffer;
 
 const defaultCenter = [134.055369, 34.421371] as any
 
