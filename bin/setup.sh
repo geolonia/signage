@@ -22,7 +22,7 @@ sudo rm -f /etc/xdg/lxsession/LXDE-pi/sshpwd.sh
 mkdir -p ~/.config/lxsession/LXDE-pi
 mkdir -p ~/.config/openbox
 
-rm -fr
+rm -fr app
 git clone https://github.com/geolonia/signage.git app
 cd app
 npm install
