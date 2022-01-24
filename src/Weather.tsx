@@ -1,19 +1,7 @@
 import React from 'react';
 
 const Component = (props: any) => {
-//   const [clock, setClock] = React.useState(new Date())
-
-//   React.useEffect(() => {
-//     const timerID = setInterval( () => tick(), 1000 );
-
-//     return function cleanup() {
-//       clearInterval(timerID);
-//     };
-//   });
-  
-//   const tick = () => {
-//     setClock(new Date());
-//   }
+  const [weather, setWeather] = React.useState({} as any)
 
   React.useEffect(() => {
     const apikey = '11fff809b9d9816ab782cf1216951600'
@@ -23,9 +11,10 @@ const Component = (props: any) => {
     fetch(api)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
-      });
-    console.log(api)
+        setWeather(data.weather[0].main)
+      }).catch(error => {
+        // nothing to do
+      })
   }, [props.lnglat])
 
   const style = {
@@ -34,7 +23,7 @@ const Component = (props: any) => {
 
   return (
     <>
-      <div style={style}>{props.location.prefecture}{props.location.city}</div>
+      <div style={style}>{props.location.prefecture}{props.location.city} {weather}</div>
     </>
   );
 }
