@@ -24,6 +24,7 @@ mkdir -p ~/.config/openbox
 
 rm -fr
 git clone https://github.com/geolonia/signage.git app
+cd app
 npm install
 
 echo "@openbox-session" > ~/.config/lxsession/LXDE-pi/autostart
@@ -38,7 +39,7 @@ unclutter -idle 0 &
 cd ~/app
 git pull
 npm install
-npm run serve
+npm run serve > /dev/null 2>&1 &
 
 chromium-browser --noerrdialogs --disable-infobars --gpu --gpu-launcher --in-process-gpu --ignore-gpu-blacklist --ignore-gpu-blocklist --kiosk https://localhost:3000
 EOS
