@@ -37,7 +37,7 @@ xset s noblank & # Don't blank video device
 unclutter -idle 0 &
 
 cd ~/app
-git pull > ~/git.log
+git pull origin main > ~/git.log
 npm install > ~/npm.log
 npm run build:style && npm run build
 npm run serve > /dev/null 2>&1 &
