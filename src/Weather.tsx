@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Component = (props: any) => {
-  const [weather, setWeather] = React.useState({} as any)
+  const [weather, setWeather] = React.useState("")
 
   React.useEffect(() => {
     const apikey = '11fff809b9d9816ab782cf1216951600'
@@ -23,7 +23,7 @@ const Component = (props: any) => {
 
   return (
     <>
-      <div style={style}>{props.location.prefecture}{props.location.city} {weather}</div>
+      <div style={style}>{props.location.prefecture}{props.location.city}{weather}</div>
     </>
   );
 }
