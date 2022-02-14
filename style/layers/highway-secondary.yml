@@ -40,12 +40,13 @@ layout:
   line-join: round
   visibility: visible
 paint:
-  line-color: '#FDD8AE'
+  line-color: '#FFFFFF'
   line-width:
+    base: 1
     stops:
-      - - 6
+      - - 14
         - 0.5
-      - - 17
-        - 2
-      - - 24
-        - 30
+      - - 16
+        - 4
+      - - 18
+        - 15

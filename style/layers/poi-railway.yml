@@ -29,7 +29,7 @@ layout:
   text-offset:
     - 0
     - 0.6
-  text-size: 12
+  text-size: 18
   text-max-width: 9
   icon-optional: false
   icon-ignore-placement: false
@@ -39,6 +39,6 @@ layout:
   text-optional: true
 paint:
   text-halo-blur: 0.5
-  text-color: '#666'
+  text-color: '#FFFFFF'
   text-halo-width: 1
-  text-halo-color: '#ffffff'
+  text-halo-color: '#000000'

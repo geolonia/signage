@@ -30,7 +30,7 @@ layout:
     - - image
       - circle-11
   text-field: '{name}'
-  text-size: 12
+  text-size: 14
   text-max-width: 9
   text-variable-anchor:
     - top
@@ -42,6 +42,6 @@ layout:
   text-anchor: center
 paint:
   text-halo-blur: 1
-  text-color: '#666'
+  text-color: '#FFFFFF'
   text-halo-width: 1
-  text-halo-color: '#ffffff'
+  text-halo-color: '#000000'

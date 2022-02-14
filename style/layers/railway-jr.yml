@@ -55,12 +55,11 @@ filter:
 paint:
   line-color: '#999999'
   line-width:
+    base: 1
     stops:
-      - - 6
-        - 2
-      - - 10
-        - 3
+      - - 14
+        - 1
+      - - 16
+        - 5
       - - 18
-        - 4
-      - - 22
         - 20
