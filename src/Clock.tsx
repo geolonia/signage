@@ -16,7 +16,10 @@ const Component = () => {
   }
 
   return (
-    <>{clock.toLocaleTimeString()}</>
+    <>
+      <div className="time">{clock.toLocaleTimeString().replace(/\:[0-9]{2}$/, '')}</div>
+      <div className="date"></div>
+    </>
   );
 }
 
