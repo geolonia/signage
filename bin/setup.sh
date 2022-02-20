@@ -44,5 +44,6 @@ npm install > ~/npm.log 2>&1
 npm run build:style && npm run build
 npm run serve > /dev/null 2>&1 &
 
+# --app を使用しないと settimeout() 等でコンテンツのアップデートができない。 --kiosk は、タイトルバーを非表示にする。
 chromium-browser --noerrdialogs --disable-infobars --gpu --gpu-launcher --in-process-gpu --ignore-gpu-blacklist --ignore-gpu-blocklist --kiosk --app=http://localhost:3000
 EOS
