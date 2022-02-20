@@ -22,6 +22,8 @@ sudo rm -f /etc/xdg/lxsession/LXDE-pi/sshpwd.sh
 mkdir -p ~/.config/lxsession/LXDE-pi
 mkdir -p ~/.config/openbox
 
+sleep 20
+
 rm -fr app
 git clone https://github.com/geolonia/signage.git app
 cd app
