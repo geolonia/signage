@@ -22,8 +22,6 @@ sudo rm -f /etc/xdg/lxsession/LXDE-pi/sshpwd.sh
 mkdir -p ~/.config/lxsession/LXDE-pi
 mkdir -p ~/.config/openbox
 
-sleep 20
-
 rm -fr app
 git clone https://github.com/geolonia/signage.git app
 cd app
@@ -37,6 +35,8 @@ xset s off &     # Disable screensaver
 xset s noblank & # Don't blank video device
 
 unclutter -idle 0 &
+
+sleep 20
 
 cd ~/app
 git pull origin main > ~/git.log 2>&1
