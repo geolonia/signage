@@ -20,25 +20,30 @@ html, body
     height: 100%;
   }
 
-  .clock
+  .clock-container
   {
     position: absolute;
     right: 5px;
     bottom: 10px;
     z-index: 9999;
     font-size: 10vw;
-    color: #000000;
-    text-shadow: 0 0 8px #FFFFFF;
+    color: #FFFFFF;
+    text-shadow: 0 0 8px #000000;
   }
 
-  .weather
+  .weather-container
   {
     position: absolute;
-    left: 5px;
-    top: 5px;
+    left: 8px;
+    top: 8px;
     z-index: 9999;
     font-size: 4vw;
-    color: #000000;
-    text-shadow: 0 0 8px #FFFFFF;
+    color: #FFFFFF;
+    text-shadow: 0 0 8px #000000;
+
+    .city
+    {
+      font-size: 2vw;
+    }
   }
 }

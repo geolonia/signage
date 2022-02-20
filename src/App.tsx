@@ -58,8 +58,8 @@ const App = () => {
     <div className="App">
       <div ref={mapContainer} className="map" data-navigation-control="off"></div>
       <div>
-        <div className="weather"><Weather location={location} lnglat={lnglat} /></div>
-        <div className="clock"><Clock /></div>
+        <div className="weather-container"><Weather location={location} lnglat={lnglat} /></div>
+        <div className="clock-container"><Clock /></div>
       </div>
     </div>
   );

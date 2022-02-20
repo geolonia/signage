@@ -11,19 +11,20 @@ const Component = (props: any) => {
     fetch(api)
       .then(response => response.json())
       .then(data => {
-        setWeather(data.weather[0].main)
+        console.log(data)
+        setWeather(data.weather[0].icon)
       }).catch(error => {
         // nothing to do
       })
   }, [props.lnglat])
 
-  const style = {
-
-  }
+  const icon = `http://openweathermap.org/img/wn/${weather}@4x.png`
 
   return (
     <>
-      <div style={style}>{props.location.prefecture}{props.location.city}{weather}</div>
+      <div>
+        <div className="weather"><img src={icon} /></div>
+      </div>
     </>
   );
 }
