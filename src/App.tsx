@@ -22,7 +22,7 @@ const defaultCenter = [134.055369, 34.421371] as any
 const App = () => {
   const mapContainer = React.useRef(null)
   const [location, setLocation] = React.useState({})
-  const [lnglat, setLnglat] = React.useState([0, 0])
+  const [lnglat, setLnglat] = React.useState(defaultCenter)
 
   React.useEffect(() => {
     const map = new window.geolonia.Map({
@@ -43,7 +43,9 @@ const App = () => {
       const center = map.getCenter()
       const lnglat = Object.values(center) as number[]
 
-      setLnglat(lnglat)
+      if (lnglat) {
+        setLnglat(lnglat)
+      }
 
       // @ts-ignore
       openReverseGeocoder(lnglat).then(res => {
