@@ -45,5 +45,10 @@ html, body
     {
       font-size: 2vw;
     }
+
+    img
+    {
+      filter: drop-shadow(1px 1px 3px #333333)
+    }
   }
 }
