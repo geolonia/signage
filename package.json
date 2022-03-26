@@ -24,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "start:style": "charites serve style/style.yml",
-    "build": "react-scripts build && mv build docs",
+    "build": "react-scripts build && rm -fr docs && mv build docs",
     "build:style": "charites build style/style.yml src/style.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
