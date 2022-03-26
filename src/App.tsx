@@ -44,7 +44,9 @@ const App = () => {
       if (payload.center && payload.zoom) {
         map.flyTo({
           center: payload.center,
-          zoom: payload.zoom
+          zoom: payload.zoom,
+          bearing: payload.bearing,
+          pitch: payload.pitch
         });
       }
     }
