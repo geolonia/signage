@@ -22,10 +22,6 @@ sudo rm -f /etc/xdg/lxsession/LXDE-pi/sshpwd.sh
 mkdir -p ~/.config/lxsession/LXDE-pi
 mkdir -p ~/.config/openbox
 
-rm -fr app
-git clone https://github.com/geolonia/signage.git app
-cd app
-npm install
 
 echo "@openbox-session" > ~/.config/lxsession/LXDE-pi/autostart
 
@@ -36,14 +32,6 @@ xset s noblank & # Don't blank video device
 
 unclutter -idle 0 &
 
-sleep 20
-
-cd ~/app
-git pull origin main > ~/git.log 2>&1
-npm install > ~/npm.log 2>&1
-npm run build:style && npm run build
-npm run serve > /dev/null 2>&1 &
-
 # --app を使用しないと settimeout() 等でコンテンツのアップデートができない。 --kiosk は、タイトルバーを非表示にする。
-chromium-browser --noerrdialogs --disable-infobars --gpu --gpu-launcher --in-process-gpu --ignore-gpu-blacklist --ignore-gpu-blocklist --kiosk --app=http://localhost:3000
+chromium-browser --noerrdialogs --disable-infobars --gpu --gpu-launcher --in-process-gpu --ignore-gpu-blacklist --ignore-gpu-blocklist --kiosk --app="https://geolonia.github.io/signage/#9.72/34.3901/134.0023"
 EOS
