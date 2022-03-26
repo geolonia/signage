@@ -7,8 +7,6 @@ import './App.scss';
 import Clock from './Clock';
 import Weather from './Weather';
 
-import mapStyle from './style.json'
-
 declare global {
   interface Window {
     geolonia: any;
@@ -32,7 +30,7 @@ const App = () => {
       center: defaultCenter,
       zoom: 16,
       hash: true,
-      style: mapStyle,
+      style: "geolonia/basic",
     })
 
     openReverseGeocoder(defaultCenter).then(res => {
