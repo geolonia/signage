@@ -43,11 +43,12 @@ const App = () => {
 
     piesocket.onmessage = function(message) {
       const payload = JSON.parse(message.data);
-
-      map.flyTo({
-        center: payload.center,
-        zoom: payload.zoom
-      });
+      if (payload.center && payload.zoom) {
+        map.flyTo({
+          center: payload.center,
+          zoom: payload.zoom
+        });
+      }
     }
 
     map.on('move', () => {
