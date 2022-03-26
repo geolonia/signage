@@ -19,6 +19,8 @@ global.Buffer = Buffer;
 
 const defaultCenter = [134.055369, 34.421371] as any
 
+const piesocket = new WebSocket(`wss://demo.piesocket.com/v3/channel_1?api_key=oCdCMcMPQpbvNjUIzqtvF1d2X2okWpDQj4AwARJuAgtjhzKxVEjQU6IdCjwm&notify_self`);
+
 const App = () => {
   const mapContainer = React.useRef(null)
   const [location, setLocation] = React.useState({})
@@ -38,6 +40,15 @@ const App = () => {
     }).catch(error => {
       // nothing to do
     })
+
+    piesocket.onmessage = function(message) {
+      const payload = JSON.parse(message.data);
+
+      map.flyTo({
+        center: payload.center,
+        zoom: payload.zoom
+      });
+    }
 
     map.on('move', () => {
       const center = map.getCenter()
