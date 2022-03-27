@@ -1,6 +1,7 @@
 import React from 'react';
 import { openReverseGeocoder } from '@geolonia/open-reverse-geocoder'
 import { Buffer } from 'buffer'
+import ReconnectingWebSocket from 'reconnecting-websocket'
 
 import './App.scss';
 
@@ -17,7 +18,7 @@ global.Buffer = Buffer;
 
 const defaultCenter = [134.055369, 34.421371] as any
 
-const piesocket = new WebSocket(`wss://demo.piesocket.com/v3/channel_1?api_key=oCdCMcMPQpbvNjUIzqtvF1d2X2okWpDQj4AwARJuAgtjhzKxVEjQU6IdCjwm&notify_self`);
+const piesocket = new ReconnectingWebSocket(`wss://demo.piesocket.com/v3/channel_1?api_key=oCdCMcMPQpbvNjUIzqtvF1d2X2okWpDQj4AwARJuAgtjhzKxVEjQU6IdCjwm&notify_self`);
 
 const App = () => {
   const mapContainer = React.useRef(null)
