@@ -81,7 +81,8 @@ const App = () => {
       map.addLayer({
         id: 'weather',
         type: 'raster',
-        source: 'weather'
+        source: 'weather',
+        maxzoom: 8,
       }, 'oc-label-pref-ja')
     })
   }, [mapContainer])
