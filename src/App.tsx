@@ -1,7 +1,7 @@
 import React from 'react';
 import { openReverseGeocoder } from '@geolonia/open-reverse-geocoder'
 import { Buffer } from 'buffer'
-import ReconnectingWebSocket from 'reconnecting-websocket'
+import ws from './lib/ws'
 
 import './App.scss';
 
@@ -16,9 +16,7 @@ declare global {
 
 global.Buffer = Buffer;
 
-const defaultCenter = [134.055369, 34.421371] as any
-
-const piesocket = new ReconnectingWebSocket(`wss://demo.piesocket.com/v3/channel_1?api_key=oCdCMcMPQpbvNjUIzqtvF1d2X2okWpDQj4AwARJuAgtjhzKxVEjQU6IdCjwm&notify_self`);
+const defaultCenter = [139.6917337, 35.6895014] as any
 
 const App = () => {
   const mapContainer = React.useRef(null)
@@ -29,8 +27,8 @@ const App = () => {
     const map = new window.geolonia.Map({
       container: mapContainer.current,
       center: defaultCenter,
-      zoom: 16,
-      hash: true,
+      zoom: 10,
+      // hash: true,
       style: "geolonia/basic",
     })
 
@@ -40,7 +38,7 @@ const App = () => {
       // nothing to do
     })
 
-    piesocket.onmessage = function(message) {
+    ws.onmessage = function(message) {
       const payload = JSON.parse(message.data);
       if (payload.center && payload.zoom) {
         map.flyTo({
@@ -73,8 +71,7 @@ const App = () => {
       const r   = 0;// relative time: -36~+11
       const t1  = (new Date(now - now%(5*60*1000) + (r<0?r:(r?-1:0))*5*60*1000)).toISOString().slice(0,19).replace(/[^0-9]/g,"");
       const t2  = (r<0)?t1:(new Date(now - now%(5*60*1000) + r*5*60*1000)).toISOString().slice(0,19).replace(/[^0-9]/g,"");
-      console.log(t1)
-      console.log(t2)
+
       map.addSource('weather', {
         type: 'raster',
         tiles: [`https://www.jma.go.jp/bosai/jmatile/data/nowc/${t1}/none/${t2}/surf/hrpns/{z}/{x}/{y}.png`],
