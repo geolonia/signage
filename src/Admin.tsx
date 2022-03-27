@@ -23,7 +23,7 @@ const Admin = () => {
       container: mapContainer.current,
       center: defaultCenter,
       zoom: 10,
-      hash: true,
+      // hash: true,
       style: "geolonia/basic",
     })
 
