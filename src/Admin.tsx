@@ -62,7 +62,8 @@ const Admin = () => {
 
   return (
     <div className="Admin">
-      <div ref={mapContainer} className="map" data-navigation-control="on" data-geolocate-control="on"></div>
+      <div ref={mapContainer} className="map" data-marker="off"
+        data-navigation-control="on" data-geolocate-control="on" data-gesture-handling="off"></div>
     </div>
   );
 }
