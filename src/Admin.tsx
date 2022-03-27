@@ -1,9 +1,10 @@
 import React from 'react';
-import { openReverseGeocoder } from '@geolonia/open-reverse-geocoder'
+import MapboxDraw from "@mapbox/mapbox-gl-draw"
 import { Buffer } from 'buffer'
 import ws from './lib/ws'
 
 import './Admin.scss';
+import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 
 declare global {
   interface Window {
@@ -27,6 +28,19 @@ const Admin = () => {
       style: "geolonia/basic",
     })
 
+    const draw = new MapboxDraw({
+      controls: {
+        point: true,
+        line_string: true,
+        polygon: true,
+        trash: true,
+        combine_features: false,
+        uncombine_features: false,
+      }
+    });
+
+    map.addControl(draw, 'top-right');
+
     map.on('moveend', () => {
       ws.send(JSON.stringify({
         zoom: map.getZoom(),
@@ -34,6 +48,15 @@ const Admin = () => {
         bearing: map.getBearing(),
         pitch: map.getPitch(),
       }));
+    })
+
+    const events = ['create', 'delete', 'update', 'selectionchange', 'modechange']
+    events.forEach(event => {
+      map.on(`draw.${event}`, () => {
+        ws.send(JSON.stringify({
+          style: map.getStyle() // TODO: GeoJSON だけを送信するようにしたほうがよさそう。
+        }));
+      })
     })
   }, [mapContainer])
 

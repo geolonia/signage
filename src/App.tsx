@@ -48,6 +48,12 @@ const App = () => {
           pitch: payload.pitch
         });
       }
+
+      if (payload.style) {
+        map.setStyle(payload.style, {
+          diff: true,
+        })
+      }
     }
 
     map.on('move', () => {
