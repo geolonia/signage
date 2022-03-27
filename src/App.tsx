@@ -82,7 +82,7 @@ const App = () => {
         id: 'weather',
         type: 'raster',
         source: 'weather'
-      })
+      }, 'oc-label-pref-ja')
     })
   }, [mapContainer])
 
