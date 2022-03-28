@@ -24,6 +24,11 @@ const App = () => {
   const [lnglat, setLnglat] = React.useState(defaultCenter)
 
   React.useEffect(() => {
+    ws.send(JSON.stringify({
+      action: "subscribe",
+      channel: "signage"
+    }));
+
     const map = new window.geolonia.Map({
       container: mapContainer.current,
       center: defaultCenter,
@@ -39,20 +44,23 @@ const App = () => {
     })
 
     ws.onmessage = function(message) {
-      const payload = JSON.parse(message.data);
-      if (payload.center && payload.zoom) {
-        map.flyTo({
-          center: payload.center,
-          zoom: payload.zoom,
-          bearing: payload.bearing,
-          pitch: payload.pitch
-        });
-      }
+      const rawPayload = JSON.parse(message.data);
+      const payload = rawPayload.msg;
+      if (payload) {
+        if (payload.center && payload.zoom) {
+          map.flyTo({
+            center: payload.center,
+            zoom: payload.zoom,
+            bearing: payload.bearing,
+            pitch: payload.pitch
+          });
+        }
 
-      if (payload.style) {
-        map.setStyle(payload.style, {
-          diff: true,
-        })
+        if (payload.style) {
+          map.setStyle(payload.style, {
+            diff: true,
+          })
+        }
       }
     }
 
