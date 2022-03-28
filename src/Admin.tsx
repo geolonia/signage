@@ -54,6 +54,25 @@ const Admin = () => {
       }));
     })
 
+    map.on('load', () => {
+      const now = (new Date()).getTime();
+      const r   = 0;// relative time: -36~+11
+      const t1  = (new Date(now - now%(5*60*1000) + (r<0?r:(r?-1:0))*5*60*1000)).toISOString().slice(0,19).replace(/[^0-9]/g,"");
+      const t2  = (r<0)?t1:(new Date(now - now%(5*60*1000) + r*5*60*1000)).toISOString().slice(0,19).replace(/[^0-9]/g,"");
+
+      map.addSource('weather', {
+        type: 'raster',
+        tiles: [`https://www.jma.go.jp/bosai/jmatile/data/nowc/${t1}/none/${t2}/surf/hrpns/{z}/{x}/{y}.png`],
+      })
+
+      map.addLayer({
+        id: 'weather',
+        type: 'raster',
+        source: 'weather',
+        maxzoom: 8,
+      }, 'oc-label-pref-ja')
+    })
+
     const events = ['create', 'delete', 'update', 'selectionchange', 'modechange']
     events.forEach(event => {
       map.on(`draw.${event}`, () => {
