@@ -43,10 +43,14 @@ const Admin = () => {
 
     map.on('moveend', () => {
       ws.send(JSON.stringify({
-        zoom: map.getZoom(),
-        center: map.getCenter(),
-        bearing: map.getBearing(),
-        pitch: map.getPitch(),
+        action: "broadcast",
+        channel: "signage",
+        message: {
+          zoom: map.getZoom(),
+          center: map.getCenter(),
+          bearing: map.getBearing(),
+          pitch: map.getPitch(),
+        }
       }));
     })
 
@@ -54,7 +58,11 @@ const Admin = () => {
     events.forEach(event => {
       map.on(`draw.${event}`, () => {
         ws.send(JSON.stringify({
-          style: map.getStyle() // TODO: GeoJSON だけを送信するようにしたほうがよさそう。
+          action: "broadcast",
+          channel: "signage",
+          message: {
+            style: map.getStyle() // TODO: GeoJSON だけを送信するようにしたほうがよさそう。
+          }
         }));
       })
     })
