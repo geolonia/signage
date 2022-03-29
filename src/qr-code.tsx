@@ -6,7 +6,7 @@ const Component = () => {
 
   React.useEffect(() => {
     const adminUrl = `${window.location.href.replace(/\/$/, '')}/#/admin`
-    QRCode.toDataURL(window.location.href, (err, url) => {
+    QRCode.toDataURL(adminUrl, (err, url) => {
       setCode(url)
     })
   })
