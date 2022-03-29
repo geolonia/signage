@@ -15,6 +15,7 @@
     "@types/react-dom": "^17.0.11",
     "buffer": "^6.0.3",
     "node-sass": "^7.0.1",
+    "qrcode": "^1.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.2",
@@ -27,9 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:style": "charites serve style/style.yml",
     "build": "react-scripts build && rm -fr docs && mv build docs",
-    "build:style": "charites build style/style.yml src/style.json",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "serve": "serve -s build"
@@ -54,6 +53,6 @@
   },
   "devDependencies": {
     "@types/mapbox__mapbox-gl-draw": "^1.2.3",
-    "@unvt/charites": "^0.1.2"
+    "@types/qrcode": "^1.4.2"
   }
 }

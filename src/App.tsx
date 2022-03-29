@@ -1,12 +1,10 @@
 import React from 'react';
 import { openReverseGeocoder } from '@geolonia/open-reverse-geocoder'
-import { Buffer } from 'buffer'
 import ws from './lib/ws'
 
 import './App.scss';
 
-import Clock from './Clock';
-import Weather from './Weather';
+import QRCode from './qr-code';
 
 declare global {
   interface Window {
@@ -14,14 +12,11 @@ declare global {
   }
 }
 
-global.Buffer = Buffer;
-
 const defaultCenter = [139.6917337, 35.6895014] as any
 
 const App = () => {
   const mapContainer = React.useRef(null)
-  const [location, setLocation] = React.useState({})
-  const [lnglat, setLnglat] = React.useState(defaultCenter)
+  const [city, setCity] = React.useState('')
 
   React.useEffect(() => {
     ws.send(JSON.stringify({
@@ -38,7 +33,7 @@ const App = () => {
     })
 
     openReverseGeocoder(defaultCenter).then(res => {
-      setLocation(res)
+      setCity(`${res.prefecture}${res.city}`)
     }).catch(error => {
       // nothing to do
     })
@@ -64,22 +59,13 @@ const App = () => {
       }
     }
 
-    map.on('moveend', () => {
-      const center = map.getCenter()
-      const lnglat = Object.values(center) as number[]
-
-      if (lnglat) {
-        setLnglat(lnglat)
-      }
-    })
-
     map.on('move', () => {
       const center = map.getCenter()
       const lnglat = Object.values(center) as number[]
 
       // @ts-ignore
       openReverseGeocoder(lnglat).then(res => {
-        setLocation(res)
+        setCity(`${res.prefecture}${res.city}`)
       }).catch(error => {
         // nothing to do
       })
@@ -90,8 +76,8 @@ const App = () => {
     <div className="App">
       <div ref={mapContainer} className="map" data-navigation-control="off" data-gesture-handling="off"></div>
       <div>
-        <div className="weather-container"><Weather location={location} lnglat={lnglat} /></div>
-        <div className="clock-container"><Clock /></div>
+        <div className="location-container">{city}</div>
+        <div className="qrcode-container"><QRCode /></div>
       </div>
     </div>
   );

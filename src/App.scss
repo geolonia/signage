@@ -20,35 +20,27 @@ html, body
     height: 100%;
   }
 
-  .clock-container
+  .qrcode-container
   {
+    pointer-events: none;
     position: absolute;
     right: 5px;
-    bottom: 10px;
+    bottom: 24px;
     z-index: 9999;
-    font-size: 10vw;
-    color: #FFFFFF;
-    text-shadow: 0 0 8px #000000;
+    font-size: 18px;
+    color: #000000;
+    text-shadow: 0 0 8px #FFFFFF;
   }
 
-  .weather-container
+  .location-container
   {
+    pointer-events: none;
     position: absolute;
     left: 8px;
     top: 8px;
     z-index: 9999;
-    font-size: 4vw;
+    font-size: 6vw;
     color: #FFFFFF;
     text-shadow: 0 0 8px #000000;
-
-    .city
-    {
-      font-size: 2vw;
-    }
-
-    img
-    {
-      filter: drop-shadow(1px 1px 3px #333333)
-    }
   }
 }
