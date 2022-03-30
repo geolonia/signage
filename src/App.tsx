@@ -19,10 +19,21 @@ const App = () => {
   const [city, setCity] = React.useState('')
 
   React.useEffect(() => {
-    ws.send(JSON.stringify({
-      action: "subscribe",
-      channel: "signage"
-    }));
+    ws.addEventListener('open', () => {
+      console.log('WebSocket opened')
+      ws.send(JSON.stringify({
+        action: "subscribe",
+        channel: "signage"
+      }));
+    })
+
+    ws.addEventListener('error', () => {
+      console.log('WebSocket error')
+    })
+
+    ws.addEventListener('close', () => {
+      console.log('WebSocket closed')
+    })
 
     const map = new window.geolonia.Map({
       container: mapContainer.current,
@@ -38,26 +49,31 @@ const App = () => {
       // nothing to do
     })
 
-    ws.onmessage = function(message) {
-      const rawPayload = JSON.parse(message.data);
-      const payload = rawPayload.msg;
-      if (payload) {
-        if (payload.center && payload.zoom) {
-          map.flyTo({
-            center: payload.center,
-            zoom: payload.zoom,
-            bearing: payload.bearing,
-            pitch: payload.pitch
-          });
-        }
+    map.on('load', () => {
+      const ss = new window.geolonia.simpleStyle({
+        "type": "FeatureCollection",
+        "features": []
+      }, { id: 'geojson' }).addTo(map)
 
-        if (payload.style) {
-          map.setStyle(payload.style, {
-            diff: true,
-          })
+      ws.addEventListener('message', (message) => {
+        const rawPayload = JSON.parse(message.data);
+        const payload = rawPayload.msg;
+        if (payload) {
+          if (payload.center && payload.zoom) {
+            map.flyTo({
+              center: payload.center,
+              zoom: payload.zoom,
+              bearing: payload.bearing,
+              pitch: payload.pitch
+            });
+          }
+
+          if (payload.geojson) {
+            ss.updateData(payload.geojson)
+          }
         }
-      }
-    }
+      })
+    })
 
     map.on('move', () => {
       const center = map.getCenter()

@@ -13,7 +13,7 @@ const Component = () => {
 
   return (
     <>
-      <div style={{textAlign: "center"}}><img src={code} /><br />管理用画面</div>
+      <div style={{textAlign: "center"}}><img src={code} alt="" /><br />管理用画面</div>
     </>
   );
 }

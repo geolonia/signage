@@ -6,7 +6,6 @@ import Admin from './Admin';
 import reportWebVitals from './reportWebVitals';
 
 import {
-  BrowserRouter,
   HashRouter,
   Routes,
   Route,
