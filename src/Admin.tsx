@@ -28,6 +28,10 @@ const Admin = () => {
       style: "geolonia/basic",
     })
 
+    MapboxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl' as 'mapboxgl-ctrl'
+    MapboxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-' as 'mapboxgl-ctrl-'
+    MapboxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group' as 'mapboxgl-ctrl-group'
+
     const draw = new MapboxDraw({
       controls: {
         point: true,
