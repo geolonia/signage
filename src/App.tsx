@@ -40,7 +40,7 @@ const App = () => {
       center: defaultCenter,
       zoom: 10,
       // hash: true,
-      style: "geolonia/basic",
+      style: "geolonia/gsi",
     })
 
     openReverseGeocoder(defaultCenter).then(res => {

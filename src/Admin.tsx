@@ -6,6 +6,11 @@ import ws from './lib/ws'
 import './Admin.scss';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 
+MapboxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl' as 'mapboxgl-ctrl'
+MapboxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-' as 'mapboxgl-ctrl-'
+MapboxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group' as 'mapboxgl-ctrl-group'
+MapboxDraw.constants.classes.ATTRIBUTION = 'maplibregl-ctrl-attrib' as 'mapboxgl-ctrl-attrib'
+
 declare global {
   interface Window {
     geolonia: any;
@@ -25,12 +30,8 @@ const Admin = () => {
       center: defaultCenter,
       zoom: 10,
       // hash: true,
-      style: "geolonia/basic",
+      style: "geolonia/gsi",
     })
-
-    MapboxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl' as 'mapboxgl-ctrl'
-    MapboxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-' as 'mapboxgl-ctrl-'
-    MapboxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group' as 'mapboxgl-ctrl-group'
 
     const draw = new MapboxDraw({
       controls: {
