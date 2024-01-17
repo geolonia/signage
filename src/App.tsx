@@ -53,8 +53,6 @@ const App = () => {
             map.flyTo({
               center: payload.center,
               zoom: payload.zoom,
-              bearing: payload.bearing,
-              pitch: payload.pitch
             });
           }
 
