@@ -13,7 +13,6 @@ const defaultCenter = [139.6917337, 35.6895014] as any
 
 const App = () => {
   const mapContainer = React.useRef(null)
-  const [city, setCity] = React.useState('')
 
   React.useEffect(() => {
     ws.addEventListener('open', () => {
