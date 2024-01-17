@@ -1,10 +1,7 @@
 import React from 'react';
-import { openReverseGeocoder } from '@geolonia/open-reverse-geocoder'
 import ws from './lib/ws'
 
 import './App.scss';
-
-import QRCode from './qr-code';
 
 declare global {
   interface Window {
@@ -43,12 +40,6 @@ const App = () => {
       style: "geolonia/gsi",
     })
 
-    openReverseGeocoder(defaultCenter).then(res => {
-      setCity(`${res.prefecture}${res.city}`)
-    }).catch(error => {
-      // nothing to do
-    })
-
     map.on('load', () => {
       const ss = new window.geolonia.simpleStyle({
         "type": "FeatureCollection",
@@ -74,27 +65,11 @@ const App = () => {
         }
       })
     })
-
-    map.on('move', () => {
-      const center = map.getCenter()
-      const lnglat = Object.values(center) as number[]
-
-      // @ts-ignore
-      openReverseGeocoder(lnglat).then(res => {
-        setCity(`${res.prefecture}${res.city}`)
-      }).catch(error => {
-        // nothing to do
-      })
-    })
   }, [mapContainer])
 
   return (
     <div className="App">
-      <div ref={mapContainer} className="map" data-navigation-control="off" data-gesture-handling="off"></div>
-      <div>
-        <div className="location-container">{city}</div>
-        <div className="qrcode-container"><QRCode /></div>
-      </div>
+      <div ref={mapContainer} className="map" data-geolocate-control="on" data-gesture-handling="off"></div>
     </div>
   );
 }
