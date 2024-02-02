@@ -63,7 +63,7 @@ const App = () => {
           if (payload.geojson) {
             const bounds = geojsonExtent(payload.geojson)
             ss.updateData(payload.geojson)
-            map.fitBounds(bounds)
+            map.fitBounds(bounds, { padding: 20 })
           }
         }
       })
