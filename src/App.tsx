@@ -1,5 +1,9 @@
 import React from 'react';
 import ws from './lib/ws'
+import geojsonExtent from '@mapbox/geojson-extent';
+
+// @ts-ignore
+import * as bbox from 'geojsjon-bbox'
 
 import './App.scss';
 
@@ -57,7 +61,9 @@ const App = () => {
           }
 
           if (payload.geojson) {
+            const bounds = geojsonExtent(payload.geojson)
             ss.updateData(payload.geojson)
+            map.fitBounds(bounds)
           }
         }
       })
